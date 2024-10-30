@@ -20,7 +20,7 @@ jobs:
         run: echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
       - name: Build the Docker image
-        run: docker build -t your-dockerhub-username/guias_despliegue:latest .
+        run: docker build -t marianoda2002/guias_despliegue:latest .
 
       - name: Push the Docker image
-        run: docker push your-dockerhub-username/guias_despliegue:latest
+        run: docker push marianoda2002/guias_despliegue:latest
