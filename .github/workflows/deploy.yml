@@ -24,7 +24,8 @@ jobs:
       # Paso 3: Construcción de la imagen Docker
       - name: Build Docker image
         run: |
-          docker build -t your-dockerhub-username/guias_despliegue:latest demo-reactjs
+          docker build -t your-dockerhub-username/guias_despliegue:latest frontend/demo-reactjs
+
 
       # Paso 4: Push de la imagen a Docker Hub
       - name: Push Docker image to Docker Hub
