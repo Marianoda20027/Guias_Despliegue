@@ -23,7 +23,7 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          cd UI
+          cd despliegue  # Cambia al directorio donde está el Dockerfile
           docker image build -t marianoda2002/react:latest .
           docker push marianoda2002/react:latest
 
