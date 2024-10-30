@@ -1,24 +1,7 @@
 {
-	"compilerOptions": {
-		"target": "ES2022",
-		"lib": ["ES2023"],
-		"module": "ESNext",
-		"skipLibCheck": true,
-		"composite": true,
-		
-		/* Modificación de la resolución */
-		"moduleResolution": "node",
-		"isolatedModules": false,
-		
-		/* Emisión ajustada */
-		"noEmit": true,                // Necesario para `allowImportingTsExtensions`
-		
-		/* Linting */
-		"strict": false,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"noFallthroughCasesInSwitch": false
-	},
-	"include": ["vite.config.ts"],
-	"exclude": ["node_modules", "dist"]
+	"files": [],
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
+	]
 }
