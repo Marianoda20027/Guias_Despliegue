@@ -1,24 +1,32 @@
-# Etapa de construcción
+# Usa una imagen de Node.js para construir la aplicación
 FROM node:18-alpine AS builder
+
+# Crea el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos de configuración y las dependencias
+# Copia los archivos de configuración y dependencias
 COPY package.json package-lock.json ./
+
+# Instala dependencias
 RUN npm install
 
-# Copia el resto de la aplicación
+# Copia el resto del código de la aplicación
 COPY . .
 
-# Construye la aplicación Next.js
+# Construye la aplicación de Next.js
 RUN npm run build
 
-# Etapa de producción
+# Usa una imagen ligera de Nginx para servir la aplicación en producción
 FROM nginx:stable-alpine
+
+# Copia el build estático de Next.js al directorio que Nginx usa para servir contenido
+COPY --from=builder /app/.next /usr/share/nginx/html/_next
+
+# Copia la configuración de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copia los archivos estáticos generados en la construcción de Next.js
-COPY --from=builder /app/.next /usr/share/nginx/html
-
-# Expone el puerto 80 y ejecuta Nginx
+# Expone el puerto 80 para servir la aplicación
 EXPOSE 80
+
+# Inicia Nginx
 CMD ["nginx", "-g", "daemon off;"]
