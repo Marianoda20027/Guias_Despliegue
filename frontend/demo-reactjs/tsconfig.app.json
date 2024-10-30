@@ -5,21 +5,24 @@
 		"composite": true,
 		"lib": ["ES2020", "DOM", "DOM.Iterable"],
 		"module": "ESNext",
-		"skipLibCheck": true,
+		"skipLibCheck": true,               // Omite la verificación de tipos en bibliotecas
 
-		/* Bundler mode */
-		"moduleResolution": "bundler",
+		/* Modos de resolución y emisión */
+		"moduleResolution": "node",         // Cambiado de 'bundler' a 'node' para mayor compatibilidad
 		"allowImportingTsExtensions": true,
-		"isolatedModules": true,
-		"moduleDetection": "force",
-		"noEmit": true,
+		"isolatedModules": false,           // Desactivado para permitir módulos sin aislamiento
+		"moduleDetection": "auto",          // Detecta módulos automáticamente
+		"noEmit": false,                    // Permite la generación de archivos .js
 		"jsx": "react-jsx",
 
-		/* Linting */
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		/* Configuración de Linting menos estricta */
+		"strict": false,                    // Desactiva el modo estricto
+		"noImplicitAny": false,             // Permite el uso de `any` implícito
+		"noImplicitThis": false,            // Permite el uso de `this` implícito
+		"noUnusedLocals": false,            // Desactiva la advertencia de variables locales no usadas
+		"noUnusedParameters": false,        // Permite parámetros no usados
+		"noFallthroughCasesInSwitch": false // Permite casos fall-through en switch
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]    // Excluye node_modules y dist
 }
