@@ -5,13 +5,16 @@
 		"module": "ESNext",
 		"skipLibCheck": true,
 		"composite": true,
+
+		/* Resolución del módulo */
+		"moduleResolution": "node",
+		"isolatedModules": true,
 		
-		/* Modificación de la resolución */
-		"moduleResolution": "node",    // Para evitar conflictos, se usa "node" en vez de "bundler"
-		"isolatedModules": false,
-		
-		/* Emisión ajustada */
-		"noEmit": true,                // Necesario para habilitar `allowImportingTsExtensions`
+		/* Emisión y JSX */
+		"noEmit": false,
+		"emitDeclarationOnly": true,        // Emitir solo declaraciones si es necesario
+		"jsx": "react-jsx",                 // Habilita JSX para React
+		"allowSyntheticDefaultImports": true, // Importación por defecto para módulos como 'react'
 		
 		/* Linting */
 		"strict": false,
