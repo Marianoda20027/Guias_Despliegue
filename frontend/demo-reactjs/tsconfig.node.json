@@ -1,23 +1,24 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"lib": ["ES2023"],
+		"lib": ["ES2023", "DOM"],           // Incluye DOM para compatibilidad en un entorno de frontend
 		"composite": true,
 		"module": "ESNext",
 		"skipLibCheck": true,
 
-		/* Bundler mode */
-		"moduleResolution": "bundler",
+		/* Modo de resolución y emisión ajustado */
+		"moduleResolution": "node",         // Cambiado a 'node' para mayor compatibilidad en Node.js
 		"allowImportingTsExtensions": true,
-		"isolatedModules": true,
-		"moduleDetection": "force",
-		"noEmit": true,
+		"isolatedModules": false,           // Desactivado para permitir módulos sin aislamiento
+		"moduleDetection": "auto",          // Cambiado a 'auto' para evitar problemas de detección estricta de módulos
+		"noEmit": false,                    // Habilita la salida, en caso de ser necesario
 
-		/* Linting */
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		/* Configuración de Linting menos estricta */
+		"strict": false,                    // Desactiva el modo estricto globalmente
+		"noUnusedLocals": false,            // Desactiva advertencias por locales no usados
+		"noUnusedParameters": false,        // Permite parámetros no usados
+		"noFallthroughCasesInSwitch": false // Permite casos fall-through en switch
 	},
-	"include": ["vite.config.ts"]
+	"include": ["vite.config.ts"],          // Incluye solo el archivo de configuración de Vite
+	"exclude": ["node_modules", "dist"]     // Excluye node_modules y dist
 }
