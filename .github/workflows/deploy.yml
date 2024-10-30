@@ -1,33 +1,33 @@
-name: Deploy React App to Docker Hub
+name: Build and Push Docker Image
 
 on:
   push:
     branches:
-      - main  # Ejecutar este workflow solo en el branch 'main'
+      - main  # Ejecuta el workflow cuando hay cambios en la rama 'main'
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout del código fuente
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      # Step 1: Check out the repository
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-      # Paso 2: Login en Docker Hub
+      # Step 2: Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Paso 3: Construcción de la imagen Docker
-      - name: Build Docker image
-        run: |
-          docker build -t your-dockerhub-username/guias_despliegue:latest frontend/demo-reactjs
+      # Step 3: Build the Docker image
+      - name: Build Docker Image
+        run: docker build -t marianoda2002/guias_despliegue:latest .
 
-
-      # Paso 4: Push de la imagen a Docker Hub
-      - name: Push Docker image to Docker Hub
-        run: |
-          docker push your-dockerhub-username/guias_despliegue:latest
+      # Step 4: Push the Docker image to Docker Hub
+      - name: Push Docker Image to Docker Hub
+        run: docker push marianoda2002/guias_despliegue:latest
